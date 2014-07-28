@@ -1,0 +1,20 @@
+{% load i18n %}
+
+<ul class="breadcrumb">
+    {% for page in page.get_ancestors %}
+        {% if page.is_root %}
+            <li class="home">
+              <a href="/" class="{% if choosing %}navigate-pages{% endif %} icon icon-home text-replace">{% trans 'Home' %}</a>
+            </li>
+        {% else %}
+            <li>
+            <a href="{{ page.url }}" {% if choosing %}class="navigate-pages"{% endif %}>{{ page.title }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+    {% if include_self %}
+        <li>
+          <a href="{{ page.url }}" {% if choosing %}class="navigate-pages"{% endif %}>{{ page.title }}</a>
+        </li>
+    {% endif %}
+</ul>

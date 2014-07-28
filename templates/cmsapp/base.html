@@ -1,0 +1,26 @@
+{% extends "wagtailadmin/admin_base.html" %}
+{% load wagtailadmin_tags %}
+{% load i18n %}
+
+{% block furniture %}
+    <div class="nav-wrapper">
+        <div class="inner">
+            <a href="/" class="logo"><img src="{{ STATIC_URL }}wagtailadmin/images/wagtail-logo.svg" alt="Wagtail" width="80" /></a>
+            {% include "cmsapp/nav.html" %}
+        </div>
+        <nav id="explorer" class="explorer"></nav>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    window.explorer_menu_url = "{% url 'explorer_nav' %}";
+</script>
+{% endblock %}

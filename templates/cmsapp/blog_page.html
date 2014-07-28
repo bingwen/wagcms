@@ -1,0 +1,34 @@
+{% extends "cmsapp/base.html" %}
+{% load rich_text %}
+{% block content %}
+    {% include "cmsapp/breadcrumb.html" with page=self %}
+    <div class="full-width page-header">
+        <h2>{{ self.title }}</h2>
+        <p>{{ self.date }}</p>
+    </div>
+    {% if self.get_children %}
+    <div class="full-width children-header" style="border-bottom: 1px solid #e6e6e6; background-color: #fafafa;">
+        <a href="#" onclick='$(".page-children").slideToggle();' style="color: #43b1b0; margin: 4px 50px; display: block;">子页面</a>
+    </div>
+    <div class="full-width page-children">
+        {% for child in self.get_children %}
+            <div class="children-item">
+                <a href='{{ child.url }}'>{{ child.title }}</a>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="page-content">
+        {{ self.body | richtext }}
+    </div>
+
+<style>
+.page-header {color: white; background-color: #43b1b0; padding: 10px 40px;}
+.page-header h2 { color: white; font-size: 1.8em; font-weight: 500;}
+.page-content {margin: 20px 30px;}
+.page-children .children-item{border-bottom: 1px dashed #e6e6e6;}
+.page-children .children-item a{display:block; margin:10px 50px; color: rgb(77, 77, 77);font-weight: 600;}
+.page-children .children-item a:hover{color: #43b1b0;}
+</style>
+{% endblock %}
