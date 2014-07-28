@@ -10,6 +10,7 @@ TEMPLATE_DEBUG = DEBUG
 ADMINS = ()
 MANAGERS = ADMINS
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -20,7 +21,7 @@ DATABASES = {
         'PORT': '',  # Set to empty string for default.
     }
 }
-
+"""
 CONN_MAX_AGE = 600  # number of seconds database connections should persist for
 ALLOWED_HOSTS = []
 TIME_ZONE = 'Asia/Shanghai'
@@ -142,3 +143,11 @@ WAGTAILSEARCH_RESULTS_TEMPLATE = 'cmsapp/search_results.html'
 WAGTAILSEARCH_RESULTS_TEMPLATE_AJAX = 'cmsapp/includes/search_listing.html'
 
 WAGTAILSEARCH_ES_INDEX = 'wagcms'
+
+from .local_config import *
+"""
+try:
+    from .local_config import *
+except:
+    pass
+"""
